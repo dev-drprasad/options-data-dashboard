@@ -10,8 +10,10 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: "shared", replacement: fileURLToPath(new URL("./src/shared", import.meta.url)) },
-      { find: "components", replacement: fileURLToPath(new URL("./src/components", import.meta.url)) },
-      { find: "business", replacement: fileURLToPath(new URL("./src/business", import.meta.url)) },
+      { find: "pages", replacement: fileURLToPath(new URL("./src/pages", import.meta.url)) },
+      { find: "entities", replacement: fileURLToPath(new URL("./src/entities", import.meta.url)) },
+      { find: "widgets", replacement: fileURLToPath(new URL("./src/widgets", import.meta.url)) },
+      { find: "features", replacement: fileURLToPath(new URL("./src/features", import.meta.url)) },
     ],
   },
 });

@@ -1,8 +1,7 @@
 import { ConfigProvider, ThemeConfig } from "antd";
-import { Skeleton } from "business/components";
+import { Skeleton } from "entities/components";
+import { Dashboard, OptionStats } from "pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from "./Pages/Dashboard";
-import OptionStats from "./Pages/OptionStats";
 
 const THEME: ThemeConfig = {
   token: {

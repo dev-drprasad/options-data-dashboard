@@ -54,7 +54,7 @@ const getOrderedChildren = <T,>(children: (React.ReactElement | SuccessRenderer<
   }) as [React.ReactElement, SuccessRenderer<T>];
 };
 
-type SuccessRenderer<T> = (data: T) => React.JSX.Element;
+type SuccessRenderer<T> = (data: T) => React.JSX.Element | null;
 
 interface FetchStatusHandlerProps<TData> {
   style?: CSSProperties;
@@ -64,9 +64,6 @@ interface FetchStatusHandlerProps<TData> {
   children: SuccessRenderer<TData> | (SuccessRenderer<TData> | React.ReactElement)[];
 }
 
-const checkIfHasData = <TData,>(status: FetchStatus, data: TData | undefined): data is TData =>
-  status.isSuccess && status.hasData;
-
 export default function FetchStatusHandler<TData>(props: FetchStatusHandlerProps<TData>) {
   const { status, children, style, noDataMessage, data } = props;
 
@@ -75,11 +72,11 @@ export default function FetchStatusHandler<TData>(props: FetchStatusHandlerProps
   const orderedChildren = getOrderedChildren(
     typeof children === "function" ? [children as SuccessRenderer<TData>] : (children as React.ReactElement[]),
   );
-  console.log("orderedChildren :>> ", orderedChildren);
+
   const [, successRenderer] = orderedChildren;
 
   if (status.isSuccess) {
-    if (!checkIfHasData(status, data)) return <StyleWrapper style={style}>{noDataMessage || "No data."}</StyleWrapper>;
+    if (!data) return <StyleWrapper style={style}>{noDataMessage || "No data."}</StyleWrapper>;
     return successRenderer(data);
   }
 
