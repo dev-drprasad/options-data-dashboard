@@ -13,7 +13,7 @@ const THEME: ThemeConfig = {
 const App: React.FC = () => {
   return (
     <ConfigProvider theme={THEME}>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Skeleton>
           <Routes>
             <Route path="/" Component={Dashboard} />

@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: process.env.GH_PAGES ? "/options-data-dashboard/" : "",
+  base: process.env.BASE_URL || "/",
   build: {
     outDir: process.env.GH_PAGES ? "./docs" : "./dist",
   },
